@@ -26,4 +26,4 @@ tbats>=1.1.0
 tqdm>=4.61.1
 tsfresh>=0.18.0
 xgboost>=0.90
-sklearn-evaluation>=0.5.5
+feature-engine>=1.1.0
