@@ -4,7 +4,7 @@ matplotlib>=3.4.2
 seaborn>=0.11.1
 pandas>=1.2.4
 afinn>=0.1
-beautifulsoup4
+beautifulsoup4>=4.9.3
 gensim>=4.0.1
 hcrystalball>=0.1.10
 jupyter>=1.0.0
