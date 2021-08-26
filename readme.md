@@ -83,7 +83,7 @@ The data cleaning steps are outlined in the above section under "Gather the data
 
 The EDA consisted mainly to confirm that the text was clean enough to be tokenized properly and serve as inputs into the next steps in the pipeline. In the image, we can see that a Named Entity Recognition model can pick out the named entities in the cleaned text.
 
-![gdp](./README_files/ner_eda.png)
+![gdp](./README_files/ner_eda.jpg)
 
 ## 5. Algorithms & Machine Learning
 
