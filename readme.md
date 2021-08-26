@@ -34,7 +34,7 @@ The image shows the change in GDP. The target variable, as depicted in the image
 
 The target data is easily sourced from the the FRED API.
 
-The features data cannot be sourced directly from the the ISM due too licensing limitations. As a workaround, a decent-sized portion of the data set is can be sourced from [press releases on prnewswire.com](https://www.prnewswire.com/news/institute-for-supply-management/)
+The features data cannot be sourced directly from the the ISM due too licensing limitations. As a workaround, a decent-sized portion of the data set can be sourced from [press releases on prnewswire.com](https://www.prnewswire.com/news/institute-for-supply-management/)
 
 The websites that hold the data of interest are dynamic websites making extensive use of java script to display the content, so scraping with [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#) alone will not work. For this task, we use [Selenium](https://selenium-python.readthedocs.io/) to render the dynamic webpage, then use BeautifulSoup to parse the relevant text from the as-rendered html source.
 
@@ -62,18 +62,20 @@ The websites that hold the data of interest are dynamic websites making extensiv
 
 ### Concatenate the five feature matrices to make the feature matrix for the model
 
-### Make predictions using Scikit Learn models
-1. Naive Bayes
-2. Logistic Regression
-3. Linear SVM
-4. Stochastic Gradient Descent
-5. Random Forest
-6. Gradient Boosted Machines
-7. Multilayer Perceptron
+### Make predictions using [Scikit Learn](https://scikit-learn.org/stable/index.html) models
+1. [Multinomial Naive Bayes](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html#sklearn.naive_bayes.MultinomialNB)
+2. [Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regression#sklearn.linear_model.LogisticRegression)
+3. [Linear SVM](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html?highlight=linear%20svm#sklearn.svm.LinearSVC)
+4. [Stochastic Gradient Descent](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html?highlight=sgd#sklearn.linear_model.SGDClassifier)
+5. [Random Forest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html?highlight=random%20forest#sklearn.ensemble.RandomForestClassifier)
+6. [Gradient Boosted Machines](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html?highlight=gradientboostingclassifier#sklearn.ensemble.GradientBoostingClassifier)
+7. [Multilayer Perceptron](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html?highlight=mlpclassifier#sklearn.neural_network.MLPClassifier)
 
 ## 3. Data Cleaning 
 
 As the data is web-scraped from a news release website, the input data format is html and javascript source code. The relevant text is buried in the source code and requires extensive cleaning before it can be preprocessed for the models.
+
+The data cleaning steps are outlined in the above section under "Gather the data" and "Normalize each corpus".
 
 ## 4. EDA
 
