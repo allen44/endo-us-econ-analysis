@@ -62,7 +62,7 @@ The websites that hold the data of interest are dynamic websites making extensiv
 
 ### Concatenate the five feature matrices to make the feature matrix for the model
 
-### Make predictions using [Scikit Learn](https://scikit-learn.org/stable/index.html) models
+### Make predictions using [Sci-kit Learn](https://scikit-learn.org/stable/index.html) models
 1. [Multinomial Naive Bayes](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html#sklearn.naive_bayes.MultinomialNB)
 2. [Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regression#sklearn.linear_model.LogisticRegression)
 3. [Linear SVM](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html?highlight=linear%20svm#sklearn.svm.LinearSVC)
@@ -79,29 +79,31 @@ The data cleaning steps are outlined in the above section under "Gather the data
 
 ## 4. EDA
 
-[EDA Report](https://colab.research.google.com/drive/13dcDkM-_T9a69Mjl5dngUVlCGvbD4wvi)
+[EDA Report](https://colab.research.google.com/drive/1NTY77rXo3MxYBcSUvGfdl5AaaT5bI-G-#scrollTo=tZv8TJCbgw-T&uniqifier=10)
 
 
-* Even without feature engineering, some features were predictive of the student's responses.  
+The EDA consisted mainly to confirm that the text was clean enough to be tokenized properly and serve as inputs into the next steps in the pipeline. In the image, we can see that a Named Entity Recognition model can pick out the named entities in the cleaned text.
 
-
-In in the left plot, 300 milliseconds in the mean time elapsed while answering the previoius question is a statisically significant seperation between the two predictions. In the right plot, 9 days in the mean user account age is a statisically significant seperation between the two predictions.
-
-![](./viz/eda%20-%20answered%20correctly%20vs%20age%20of%20user%20account%20and%20vs%20prior%20question%20wlapsed%20time.png)
+![gdp](./README_files/ner_eda.png)
 
 ## 5. Algorithms & Machine Learning
 
-[Feature Engineering Notebook](https://colab.research.google.com/drive/1NkraGuA-_JZLfqhZdK_H7DKizTBk_4bm)
+[Feature Engineering Notebook](https://colab.research.google.com/drive/1NTY77rXo3MxYBcSUvGfdl5AaaT5bI-G-#scrollTo=M8NODhN2L8ZA&uniqifier=10)
 
-[ML Notebook](https://colab.research.google.com/drive/11YpddoKfSZ2cPrrB-lrBa1guXZg1c5Q4)
+[ML Notebook](https://colab.research.google.com/drive/1NTY77rXo3MxYBcSUvGfdl5AaaT5bI-G-#scrollTo=LaA6HRShHnGr&uniqifier=10)
 
-I chose to work with [Sci-kit Learn](https://sklearn.org/) and a Python-implemented [Bayesian Optimization library](https://github.com/fmfn/BayesianOptimization) for selecting and training my model. I tested the feature-engineered dataset on 5 different algorithms that were well-suited for the dataset and the modelling goals. The LightGBM and Random Forest algorithms both scored the best but a comparision of the learning rates shows that LightGBM learns much faster than Random Forest, in terms of both fit time and number of samples.
+I chose to work with [Sci-kit Learn](https://sklearn.org/) I tested the feature-engineered dataset on 7 different algorithms that were well-suited for the dataset and the modelling goals and two types of text preprocessing. 
 
-![](./viz/compare_learning_curves_lgbm_rf.png)
 
->***NOTE:** I choose ROC AUC as the scoring metric because the models will be on this metric if entered into the Kaggle competition. The ROC AUC useful when we want to evaluate a model by considering the probabilities it assigns to its predictions, rather than just the predictions only*
 
-**Selection: LightGBM Algorithm**
+The SGD model with context-based preprocessing is top-ranked and Linear SVM model with word-based preprocessing is the second-ranked.
+
+
+![gdp](./README_files/compare_context_based_and_word_based_models.png)
+
+>***NOTE:** I chose accuracy as the performance metric because there are no anomalies in data that warrant the extra complexity--relative to accuracy--of the other metrics and because many stakeholders can best understand--and make business decisions--using accuracy.*
+
+**Selection: SGD model with context-based preprocessing**
 
 This algorithm is best descrided by the first paragraph of its documentation:
 
