@@ -92,35 +92,26 @@ The EDA consisted mainly to confirm that the text was clean enough to be tokeniz
 
 [ML Notebook](https://colab.research.google.com/drive/1NTY77rXo3MxYBcSUvGfdl5AaaT5bI-G-#scrollTo=LaA6HRShHnGr&uniqifier=10)
 
-I chose to work with [Sci-kit Learn](https://sklearn.org/) I tested the feature-engineered dataset on 7 different algorithms that were well-suited for the dataset and the modelling goals and two types of text preprocessing. 
+I tested the feature-engineered dataset on 7 different algorithms that were well-suited for the dataset and the modelling goals and two types of text preprocessing. 
 
+The SGD model with context-based preprocessing is top-ranked and Linear SVM model with word-based preprocessing is the second-ranked. Training time and prediction time are similar enough (generally within one order of magnitude) and all of their magnitudes are suitable for the monthly frequency of the training and predictions.
 
-
-The SGD model with context-based preprocessing is top-ranked and Linear SVM model with word-based preprocessing is the second-ranked.
-
-
-![gdp](./README_files/compare_context_based_and_word_based_models.png)
+![compare_context_based_and_word_based_models](./README_files/compare_context_based_and_word_based_models.png)
 
 >***NOTE:** I chose accuracy as the performance metric because there are no anomalies in data that warrant the extra complexity--relative to accuracy--of the other metrics and because many stakeholders can best understand--and make business decisions--using accuracy.*
 
 **Selection: SGD model with context-based preprocessing**
 
-This algorithm is best descrided by the first paragraph of its documentation:
+This algorithm is best described by the first paragraph of its documentation:
 
-> LightGBM is a gradient boosting framework that uses tree based learning algorithms. It is designed to be distributed and efficient with the following advantages:
-> 
-> * Faster training speed and higher efficiency.
-> 
-> * Lower memory usage.
-> 
-> * Better accuracy.
-> 
-> * Capable of handling large-scale data.
+> Linear classifiers (SVM, logistic regression, etc.) with SGD training.
 
-While modeling this data, all of those claims were shown to be accurate.
+>This estimator implements regularized linear models with stochastic gradient descent (SGD) learning: the gradient of the loss is estimated each sample at a time and the model is updated along the way with a decreasing strength schedule (aka learning rate). ...For best results using the default learning rate schedule, the data should have zero mean and unit variance.
+
+Despite no guarantee that the vectorized features have zero mean or unit variance, this model performed best among those tested.
 
 
-![](./viz/extended_dataset_test_eval.png)
+![sgd_metrics](./README_files/sgd_metrics.png)
 
 
 
