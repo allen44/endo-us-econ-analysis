@@ -32,21 +32,48 @@ The image shows the change in GDP. The target variable, as depicted in the image
 
 ## 2. Method
 
-There are several possible approaches to building a knowedge tracing and response prediction system:
+The target data is easily sourced from the the FRED API.
 
-1. **Content-based Method:** Predict a student response to new content based on the similarity of the new content to other content with which the student has previously interacted. As this method compare the similarity of features of the new content and the previously encountered content, this method requires high-qualility content metadata and content that is inter-related in some known way in order to make accurate predictions.
+The features data cannot be sourced directly from the the ISM due too licensing limitations. As a workaround, a decent-sized portion of the data set is can be sourced from [press releases on prnewswire.com](https://www.prnewswire.com/news/institute-for-supply-management/)
 
-2. **Collaborative-based Method:** Predict a student response to content based on how a similar student has previously interacted with the same content. Collaborative tracing relies on information from similar users, so it is important to have a large dataset of students' direct interactions sith the content. It doesn't work well for new schools without any data on the students, or any type of student that is to dissimilar from all other students.
+The websites that hold the data of interest are dynamic websites making extensive use of java script to display the content, so scraping with [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#) alone will not work. For this task, we use [Selenium](https://selenium-python.readthedocs.io/) to render the dynamic webpage, then use BeautifulSoup to parse the relevant text from the as-rendered html source.
 
-3. **Hybrid Method:** Leverages both content-based & collaborative-based tracing. Typically, when a new student comes into the system, the content-based recommendation takes place. Then after interacting with the items a couple of times, the collaborative/ user based recommendation system will be utilized.
+### Gather the data
 
-**Selection:Content-based method** 
+1. Render data with Selenium 
+2. Scrape the rendered text with BeautifulSoup
+3. Parse the html source into the five sections of interest (five corpuses)
 
-I chose to work with a content-based tracing and prediction system. This made the most sense because the content has high-quality metadata--all of the content (lectures and questions) are meticulously labelled and tagged. Every content type has a tag, or up to five tags, and labels that shows how content are bundled together and presented to the student. It would be interesting to see what meaning a model can indentify between the content features. In contrast, user data is limited in this dataset. While, Riiid! likely has access to rich, granular user data (such as education level, age, gender, device type, location, etc, social netwrok connections, local time, etc..) from operating a large online school, for the AI-ED Challenge, they have only released a signle user feature. This is probably not enough data to make accurate collaborative-based predictions. In the future, I would love to experiment using a hybrid system to further increase the prredictive abilities of the model.
+### Normalize each corpus
+
+1. Strip HTML tags
+2. Remove accented charecters
+3. Change text to lowercase
+4. Remove extra line breaks
+5. Leematize text
+6. Remove special charecters and digits
+7. Remove extra whitespace
+8. Remove stop words
+
+### Tokenize and vectorize or feature-engineer each corpus
+
+1. For "Summary" and "What Respondants are Saying" corpuses, use TFIDF vectorizer or Word2Vec Vectorizer. 
+2. For corpus regarding commodities, use CountVectorizer.
+
+### Concatenate the five feature matrices to make the feature matrix for the model
+
+### Make predictions using Scikit Learn models
+1. Naive Bayes
+2. Logistic Regression
+3. Linear SVM
+4. Stochastic Gradient Descent
+5. Random Forest
+6. Gradient Boosted Machines
+7. Multilayer Perceptron
 
 ## 3. Data Cleaning 
 
-As Riiid! and Kaggle have a vested interest in cultivating state-of-the-art models from the competitors with maximium reproducibility, clean data is the baseline expectation. During data import, I found this to be the case. Other than memory size contraints, I was able to easily import from either the csv files or the Kaggle CLI.
+As the data is web-scraped from a news release website, the input data format is html and javascript source code. The relevant text is buried in the source code and requires extensive cleaning before it can be preprocessed for the models.
 
 ## 4. EDA
 
