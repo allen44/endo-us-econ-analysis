@@ -1,18 +1,29 @@
 ![cover_photo](./6_README_files/cover_photo.png)
 # Forecasting Business Cycle Direction using NLP
 
-*Business cycle forecasting is valuable to businesses so that they can make informed business decisions.Thousands of approaches exist for business cycle forecasting--including qualitative models and quantitative models--but which ones are useful?.There may be value in using a model that examines public data in a novel way. Can we use a natural language processing model to analyse forward-looking statements by supply chain managers to forecast the business environment for the upcoming quarter? 
-
-
+*Business cycle forecasting is valuable to businesses so that they can make informed business decisions.Thousands of approaches exist for business cycle forecasting--including qualitative models and quantitative models--but which ones are useful?.There may be value in using a model that examines public data in a novel way. Can we use a natural language processing model to analyse forward-looking statements by supply chain managers to forecast the business environment for the upcoming quarter?*
 
 
 ## 1. Data
 
-Riiid! is one the world’s largest English language schools that helps student learn the content needed to pass an English profiency test for future employment in South Korea. With over 100 million entries detailing students responses to questions and viewing of lectures, this previously proprietary data set, which was opened to global AI researchers as part of the Riiid! AI-ED Challenge 2020, is a sufficient size to develop a good predictor model. 
+The US GDP data is released every three months. The ISM releases their Report on Business survey results on the first business of every month.  Can we use the textual data in the monthly ISM report to forecast the direction of change in GDP growth relative to the previous quarter?
 
-> * [Riiid! AI-ED Challenge 2020 website](https://www.ednetchallenge.ai/)
+> * [Dataset: ISM Report On Business®](https://ismrob.org/)
 
-> * [Dataset, hosted on Kaggle](https://www.kaggle.com/c/riiid-test-answer-prediction)
+The textual data for this analysis is from the Institue for Supply Management's (ISM) Report on Business. This report has been published on the first day of the month since the 1940's under a few different names--the most-used being the "PMI", or "Purchasing Managers Index".
+
+Confusingly, other research firms release data with the name "PMI", but this notebook will use the ISM's PMI report as it has the longest history.
+
+> * [Target: US GDP](https://fred.stlouisfed.org/series/GDPC1/)
+
+We express the target as the sign of the change in the GDP growth--either positive, negative. As GDP growth is the change in GDP, the target is the sign of the change of the change in GDP. This can also be described as the sign of the 2nd-order rate of change, or the acceleration, of GDP.
+
+By choosing the target this way, this frames the problem we are solving as a binary classification problem.
+
+The image shows the change in GDP. The target variable, as depicted in the image, is the slope of the line.
+
+
+
 
 
 ## 2. Method
