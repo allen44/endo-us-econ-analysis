@@ -143,5 +143,5 @@ Topic embedding were considered in the data exploration but were left out of the
 
 ## 9. Credits
 
-Thanks to the open source devs who maintain Sci-kit Learn, BeatuifulSoup, and Selenium; and to Shmuel Naaman for being an amazing Springboard mentor.
+Thanks to the open source devs who maintain Sci-kit Learn, BeautifulSoup, and Selenium; and to Shmuel Naaman for being an amazing Springboard mentor.
 
