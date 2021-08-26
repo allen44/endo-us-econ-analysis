@@ -1,4 +1,4 @@
-![cover_photo](./6_README_files/cover_photo.png)
+![cover_photo](./README_files/cover_photo.png)
 # Forecasting Business Cycle Direction using NLP
 
 *Business cycle forecasting is valuable to businesses so that they can make informed business decisions.Thousands of approaches exist for business cycle forecasting--including qualitative models and quantitative models--but which ones are useful?.There may be value in using a model that examines public data in a novel way. Can we use a natural language processing model to analyse forward-looking statements by supply chain managers to forecast the business environment for the upcoming quarter?*
@@ -9,12 +9,16 @@
 The US GDP data is released every three months. The ISM releases their Report on Business survey results on the first business of every month.  Can we use the textual data in the monthly ISM report to forecast the direction of change in GDP growth relative to the previous quarter?
 
 > * [Dataset: ISM Report On Business®](https://ismrob.org/)
+> 
+![summary](./README_files/summary.jfif)
 
 The textual data for this analysis is from the Institue for Supply Management's (ISM) Report on Business. This report has been published on the first day of the month since the 1940's under a few different names--the most-used being the "PMI", or "Purchasing Managers Index".
 
 Confusingly, other research firms release data with the name "PMI", but this notebook will use the ISM's PMI report as it has the longest history.
 
 > * [Target: US GDP](https://fred.stlouisfed.org/series/GDPC1/)
+
+![gdp](./README_files/gdp.jfif)
 
 We express the target as the sign of the change in the GDP growth--either positive, negative. As GDP growth is the change in GDP, the target is the sign of the change of the change in GDP. This can also be described as the sign of the 2nd-order rate of change, or the acceleration, of GDP.
 
