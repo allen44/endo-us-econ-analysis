@@ -1,4 +1,3 @@
-![cover_photo](./README_files/cover_photo.png)
 # Forecasting Business Cycle Direction using NLP
 
 *Business cycle forecasting is valuable to businesses so that they can make informed business decisions.Thousands of approaches exist for business cycle forecasting--including qualitative models and quantitative models--but which ones are useful?.There may be value in using a model that examines public data in a novel way. Can we use a natural language processing model to analyse forward-looking statements by supply chain managers to forecast the business environment for the upcoming quarter?*
@@ -111,18 +110,38 @@ This algorithm is best described by the first paragraph of its documentation:
 Despite no guarantee that the vectorized features have zero mean or unit variance, this model performed best among those tested.
 
 
-![sgd_metrics](./README_files/sgd_metrics.png)
-
+![sgd_metrics](./README_files/sgd_metrics.jpg)
 
 
 ## 8. Future Improvements
 
-* In the future, I would love to integrate an API where a student or teacher, or their app, can query the model with information about some kind of content and receive the prediction without having to use a Jupyter notebook inteface.
+### Small dataset
 
+The historical dataset spans over 70 years, but the textual data in this analysis only spans nine years.
 
-* Due to RAM constraints on google colab, I had to train a 1% sample of the original 100 million sample dataset. Without resource limitations, I would love to train on the full dataset. Preliminary tests showed that the bigger the training size, the higher the ROC AUC for most of the models--except for LightGBM which did not required less than 40000 samples to reach its peak score. 
+While the historical numerical data in this data series are quite easy to find, as id the newest full release. However, the historical full text data series is quite difficult to find on the public web. Due to licensing and copyright issues, as well as limited access to the archival data, this analysis only considered textual data that could be found still published on a public news outlet's website.
+
+*Further work: license the older data for research purposes, or find an institution that will share thier access to the archival data text.*
+
+### Model has no memory of previous data in the time-series 
+These models use only the most recent data as features when predicting the gdp_growth_direction. It may be useful for the models if they could learn from the features and targets of previous periods.
+
+*Further work: Add creation of rolling windows to the preprocessing pipeline.*
+
+### Some advanced word embeddings are absent from the final model
+
+The word embeddings compared in this analysis are well-studied and easy to understand and explain. However, this means that the newest vectorizer compared here was first published in 2013 (Word2Vec). There are many newer vectorizers that may have performace improvements. Candidates for next comparsions include [GloVe (2014)](https://www.aclweb.org/anthology/D14-1162/) and [fastText (2016)](https://arxiv.org/abs/1607.04606v2) because they already have open-source python implementations. These two vectorizers have different approaches to making the word embeddings. It could be interesting to see if the novel approaches result in better performance. 
+
+*Further work: Add FastText and GloVe word embeddings to the comparison*
+
+### Topic embeddings are absent from the final comparison
+
+Topic embedding were considered in the data exploration but were left out of the final comparision as combining these embeddings into a model with word2vec embeddings would be computationally costly on a single machine. By adapting code in this notebook for distributed computing, a larger model consisting of topic embeddings along with more advanced word embedding can be evaluated.
+
+*Further work: Adapt the code for distrubuted computing to compute the performance of larger models containing words embeddings, as well as topic embeddings and content-embeddings.*
+
 
 ## 9. Credits
 
-Thanks to the open source devs who maintain Sci-kit Learn, and Shmuel Naaman for being an amazing Springboard mentor.
+Thanks to the open source devs who maintain Sci-kit Learn, BeatuifulSoup, and Selenium; and to Shmuel Naaman for being an amazing Springboard mentor.
 
