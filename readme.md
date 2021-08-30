@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/allen44/endo-us-econ-analysis.svg?branch=main)](https://app.travis-ci.com/allen44/endo-us-econ-analysis)
+
 # Forecasting Business Cycle Direction using NLP
 
 *Business cycle forecasting is valuable to businesses so that they can make informed business decisions. Thousands of approaches exist for business cycle forecasting--including qualitative models and quantitative models--but which ones are useful? There may be value in using a model that examines public data in a novel way. Can we use a natural language processing model to analyse forward-looking statements by supply chain managers to forecast the business environment for the upcoming quarter?*
